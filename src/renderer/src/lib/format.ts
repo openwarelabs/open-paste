@@ -9,12 +9,16 @@ export function formatBytes(bytes: number): string {
 	const units = ['KB', 'MB', 'GB']
 	let value = bytes / 1024
 	let unit = 0
-	while (value >= 1024 && unit < units.length - 1) {
+	// Round before choosing the unit. 1023.999 KB is 1024 KB, which is 1.0 MB.
+	while (unit < units.length - 1 && Number(value.toFixed(1)) >= 1024) {
 		value /= 1024
 		unit++
 	}
 
-	return `${value >= 10 ? Math.round(value) : value.toFixed(1)} ${units[unit]}`
+	const rounded = Number(value.toFixed(1))
+	// 9.999 KB rounds to 10, so the decimal has to be dropped after rounding.
+	const shown = rounded >= 10 ? String(Math.round(rounded)) : rounded.toFixed(1)
+	return `${shown} ${units[unit]}`
 }
 
 const MINUTE = 60_000
