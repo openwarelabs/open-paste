@@ -106,7 +106,7 @@ const Menu = (props: MenuProps): ReactNode => {
 						<div key={`sep-${i}`} className="menu-sep" role="separator" />
 					) : (
 						<MenuItem
-							key={entry.label}
+							key={entry.id ?? `item-${i}`}
 							entry={entry}
 							index={i}
 							active={active === i}

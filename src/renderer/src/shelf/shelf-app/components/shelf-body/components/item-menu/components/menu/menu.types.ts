@@ -2,6 +2,7 @@ import type { IconName } from '@renderer/components/icon'
 
 export type MenuEntry =
 	| {
+			id?: string
 			label: string
 			icon?: IconName
 			shortcut?: string

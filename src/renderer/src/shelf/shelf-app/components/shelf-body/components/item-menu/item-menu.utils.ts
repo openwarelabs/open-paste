@@ -13,6 +13,7 @@ export function pinEntries(
 ): MenuEntry[] {
 	return [
 		...boards.map((b): MenuEntry => ({
+			id: b.id,
 			label: b.name,
 			swatch: b.color,
 			checked: item.pinboards.includes(b.id),
